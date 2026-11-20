@@ -1,7 +1,7 @@
 # TufaZIP
 
 
-<img src="docs/images/tufazip-image.png" width="30%">
+<img src="docs/images/tufazip-image.png" width="50%" style="text-align:center;">
 
 TufaZIP is a Tauri 2 and Rust archive utility for Apple Silicon Macs. It creates and extracts standard ZIP archives and TufaZIP Local archives. The interface is available in English, Japanese, and Simplified Chinese.
 
