@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TufaZIP</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="strings.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header data-tauri-drag-region>
+      <span class="app-name" data-tauri-drag-region>TufaZIP</span>
+      <label class="format shell"
+        ><img src="mark.png" alt="" /><select id="format" data-tip="format">
+          <option value="zip">ZIP</option>
+          <option value="local">TufaZIP Local</option></select
+        ><i data-icon="chevrons"></i
+      ></label>
+    </header>
+    <main>
+      <nav id="modes" class="segmented" aria-label="Mode">
+        <button data-mode="compress" aria-pressed="true">
+          <i data-icon="pack"></i><span data-t="compress"></span>
+        </button>
+        <button data-mode="extract" aria-pressed="false">
+          <i data-icon="unpack"></i><span data-t="extract"></span>
+        </button>
+      </nav>
+      <div id="editor">
+        <section class="card">
+          <div class="card-title">
+            <span id="settingTitle"></span
+            ><button class="icon" id="detach"><i data-icon="panel"></i></button>
+          </div>
+          <div class="compress-only slider">
+            <input
+              id="level"
+              type="range"
+              min="0"
+              max="3"
+              step="1"
+              value="2"
+              data-tip="method"
+            />
+            <div id="ticks"></div>
+          </div>
+          <div class="fields">
+            <label class="compress-only" for="split" data-t="split"></label>
+            <div class="compress-only shell field-select">
+              <select id="split">
+                <option value="0" data-t="none"></option>
+                <option value="5">5 MB</option>
+                <option value="25">25 MB</option>
+                <option value="100">100 MB</option>
+                <option value="1024">1024 MB</option></select
+              ><i data-icon="down"></i>
+            </div>
+            <label for="password" data-t="password"></label>
+            <div class="password">
+              <input
+                id="password"
+                type="password"
+                autocomplete="off"
+                spellcheck="false"
+              /><button class="icon" id="eye" data-tip="show">
+                <i data-icon="eye"></i>
+              </button>
+            </div>
+            <label class="compress-only" for="confirm" data-t="confirm"></label>
+            <input
+              class="compress-only"
+              type="password"
+              id="confirm"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <div id="localInfo" hidden>
+            <i data-icon="info"></i><span data-t="localInfo"></span>
+          </div>
+          <div class="aes compress-only" id="aes">
+            <i data-icon="lock"></i><span data-t="aes"></span>
+          </div>
+        </section>
+        <div class="options compress-only">
+          <label
+            ><input id="clean" type="checkbox" checked /><span
+              data-t="clean"
+            ></span
+            ><i data-icon="info" tabindex="0" data-tip="cleanHelp"></i
+          ></label>
+          <label
+            ><input id="verify" type="checkbox" /><span data-t="verify"></span
+          ></label>
+          <label
+            ><input id="separate" type="checkbox" /><span
+              data-t="separate"
+            ></span
+          ></label>
+        </div>
+      </div>
+      <button id="redock" class="secondary" hidden>
+        <i data-icon="panel"></i><span data-t="dock"></span>
+      </button>
+      <section id="inputs">
+        <div class="inputbar">
+          <button id="chooseFiles" class="pick">
+            <i data-icon="add"></i><span id="dropLabel"></span></button
+          ><button
+            id="chooseFolders"
+            class="icon compress-only"
+            data-tip="folders"
+          >
+            <i data-icon="folder"></i>
+          </button>
+        </div>
+        <ul id="files" hidden></ul>
+      </section>
+      <div id="notice" role="status" hidden></div>
+      <progress id="progress" hidden></progress>
+    </main>
+    <footer>
+      <label class="language" data-tip="language"
+        ><i data-icon="globe"></i
+        ><select id="language" data-tip="language">
+          <option value="auto" data-t="auto"></option>
+          <option value="ja">日本語</option>
+          <option value="en">English</option>
+          <option value="zh">简体中文</option></select
+        ><i data-icon="down"></i
+      ></label>
+      <button id="action" class="primary"></button>
+    </footer>
+  </body>
+</html>

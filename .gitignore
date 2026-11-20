@@ -1,0 +1,11 @@
+# Node.js dependencies installed by npm
+/node_modules/
+
+# Rust build artifacts and packaged macOS apps
+/src-tauri/target/
+
+# Tauri-generated schemas
+/src-tauri/gen/
+
+# macOS Finder metadata
+.DS_Store

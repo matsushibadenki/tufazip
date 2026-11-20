@@ -1,0 +1,453 @@
+:root {
+  color-scheme: light dark;
+  --bg: #fff;
+  --text: #242427;
+  --sub: #6c6d73;
+  --card: #f6f6f7;
+  --edge: #dedee2;
+  --field: #fff;
+  --btn: #f1f1f3;
+  --accent: #087aff;
+  --rail: #dbdbdf;
+  --bad: #af3028;
+  font:
+    13px -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #252528;
+    --text: #f3f3f4;
+    --sub: #b3b3bb;
+    --card: #303034;
+    --edge: #48484e;
+    --field: #28282c;
+    --btn: #434348;
+    --rail: #53535a;
+    --bad: #ffaba4;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+button,
+select,
+input {
+  font: inherit;
+  color: inherit;
+}
+button,
+select {
+  cursor: pointer;
+}
+button {
+  border: 0;
+  background: none;
+}
+button:disabled,
+select:disabled,
+input:disabled {
+  cursor: default;
+  opacity: 0.48;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+[hidden],
+body.extract .compress-only,
+body.panel #inputs,
+body.panel #modes,
+body.panel #action,
+body.panel header .format {
+  display: none !important;
+}
+header {
+  min-height: 50px;
+  border-bottom: 1px solid var(--edge);
+  padding: 7px 12px 7px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  user-select: none;
+}
+.app-name {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--sub);
+}
+.shell {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid var(--edge);
+  background: var(--field);
+  border-radius: 7px;
+}
+.shell select,
+.language select {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  min-width: 0;
+  flex: 1;
+}
+.format {
+  border-radius: 18px;
+  box-shadow: 0 1px 2px #0000000b;
+}
+.format img {
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  left: 10px;
+  pointer-events: none;
+}
+.format select {
+  width: 100%;
+  min-width: 99px;
+  padding: 6px 27px 6px 32px;
+}
+.shell > i,
+.language > i:last-child {
+  pointer-events: none;
+  position: absolute;
+  right: 8px;
+}
+.shell > i svg,
+.language > i:last-child svg {
+  width: 12px;
+}
+main {
+  padding: 14px 20px 10px;
+  flex: 1;
+  overflow: auto;
+}
+.segmented {
+  display: flex;
+  padding: 2px;
+  background: var(--btn);
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  margin-bottom: 13px;
+}
+.segmented button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 4px;
+}
+.segmented button[aria-pressed="true"] {
+  background: var(--field);
+  box-shadow: 0 1px 3px #0002;
+  font-weight: 600;
+}
+i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-weight: 600;
+}
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sub);
+  border-radius: 5px;
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+}
+.icon:hover,
+.pick:hover {
+  background: var(--btn);
+}
+.slider {
+  margin: 8px 0 16px;
+}
+.slider input {
+  margin: 0;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  vertical-align: middle;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0 var(--fill, 66.67%),
+    var(--rail) var(--fill, 66.67%) 100%
+  );
+}
+.slider input::-webkit-slider-thumb {
+  appearance: none;
+  width: 19px;
+  height: 16px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 1px 5px #0003;
+}
+.slider #ticks {
+  display: flex;
+  justify-content: space-between;
+  color: var(--sub);
+  font-size: 10px;
+  margin-top: 4px;
+}
+.slider #ticks span {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+}
+.slider #ticks span::before {
+  content: "";
+  width: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--sub);
+}
+#ticks .selected {
+  font-weight: 600;
+  color: var(--text);
+}
+.fields {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 8px;
+  align-items: center;
+}
+.fields > label {
+  text-align: right;
+  font-size: 12px;
+}
+.fields input,
+.field-select {
+  width: 100%;
+  height: 25px;
+  border: 1px solid var(--edge);
+  background: var(--field);
+  border-radius: 6px;
+}
+.fields input {
+  padding: 3px 7px;
+  min-width: 0;
+}
+.field-select select {
+  padding: 2px 24px 2px 7px;
+  height: 100%;
+}
+.password {
+  position: relative;
+}
+.password input {
+  padding-right: 27px;
+}
+.password .icon {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+}
+.aes {
+  color: var(--sub);
+  opacity: 0.65;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  margin-top: 11px;
+}
+.aes.active {
+  opacity: 1;
+  color: var(--accent);
+}
+.options {
+  display: grid;
+  gap: 6px;
+  margin: 13px 1px;
+}
+.options label {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  width: fit-content;
+}
+.options input {
+  margin: 0;
+  width: 15px;
+  height: 15px;
+  accent-color: var(--accent);
+}
+.options i {
+  color: var(--sub);
+}
+.options i svg {
+  width: 12px;
+  height: 12px;
+}
+#inputs {
+  border: 1px dashed var(--edge);
+  border-radius: 8px;
+  margin-top: 13px;
+}
+.inputbar {
+  display: flex;
+  align-items: center;
+  padding: 5px 7px;
+}
+.pick {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  gap: 7px;
+  align-items: center;
+  padding: 5px;
+  text-align: left;
+  border-radius: 5px;
+  color: var(--sub);
+  font-size: 12px;
+}
+.drag #inputs {
+  outline: 2px solid var(--accent);
+  background: var(--card);
+}
+#files {
+  margin: 0 8px 5px;
+  padding: 0;
+  list-style: none;
+  max-height: 100px;
+  overflow: auto;
+}
+#files li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+}
+#files li span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+#files .icon {
+  font-size: 16px;
+}
+#notice {
+  margin: 8px 0 0;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+  color: var(--sub);
+}
+#notice.error {
+  color: var(--bad);
+}
+progress {
+  width: 100%;
+  height: 5px;
+  accent-color: var(--accent);
+}
+footer {
+  border-top: 1px solid var(--edge);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 18px;
+  gap: 10px;
+}
+.primary,
+.secondary {
+  border-radius: 7px;
+  padding: 6px 17px;
+  font-weight: 600;
+  font-size: 12px;
+}
+.primary {
+  background: var(--accent);
+  color: white;
+}
+.secondary {
+  background: var(--btn);
+}
+.secondary i {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.language {
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: var(--sub);
+}
+.language > i:first-child {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+}
+.language select {
+  padding: 4px 17px 4px 19px;
+  font-size: 11px;
+}
+.language > i:last-child {
+  right: 0;
+}
+.panel .options {
+  margin-bottom: 0;
+}
+.panel main {
+  padding-bottom: 15px;
+}
+#localInfo {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sub);
+  font-size: 11px;
+}
+body.extract .fields {
+  margin-top: 8px;
+}
+.format select {
+  width: auto;
+}
+body.local-compress .fields > label:not([for="split"]),
+body.local-compress .password,
+body.local-compress #confirm,
+body.local-compress #aes {
+  display: none;
+}

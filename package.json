@@ -1,0 +1,8 @@
+{
+  "name": "tufazip-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": { "dev": "tauri dev", "build": "tauri build --bundles app", "test": "cargo test --manifest-path src-tauri/Cargo.toml" },
+  "devDependencies": { "@tauri-apps/cli": "2.12.4" }
+}
